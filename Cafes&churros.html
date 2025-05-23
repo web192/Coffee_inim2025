@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coffee_inim2025</title>
+<style>
+  /* Reset y base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f5f0e6;
+    color: #4b3b2b;
+    line-height: 1.6;
+    padding-top: 80px; /* espacio para header fijo */
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  /* Header y nav fijo */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f5f0e6;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6a4c33;
+  }
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #4b3b2b;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    background-color: #6a4c33;
+    color: white;
+    outline: none;
+  }
+
+  /* Hero */
+  .hero {
+    background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1400&q=80') center center/cover no-repeat;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  /* VMV Container (Visión, Misión, Valores) */
+  .vmv-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .vmv-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(139, 94, 60, 0.15);
+    padding: 25px;
+    flex: 1 1 280px;
+    max-width: 350px;
+  }
+  .vmv-item h3 {
+    color: #6a4c33;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+  }
+  .vmv-item p,
+  .vmv-item ul {
+    font-size: 1rem;
+    color: #4b3b2b;
+  }
+  .vmv-item ul {
+    padding-left: 20px;
+  }
+  .vmv-item ul li {
+    margin-bottom: 8px;
+  }
+
+  /* Menú */
+  #menu {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 10px;
+  }
+  #menu h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #6a4c33;
+    margin-bottom: 25px;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+  }
+  .menu-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(139, 94, 60, 0.15);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .menu-item:hover,
+  .menu-item:focus {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(139, 94, 60, 0.3);
+    outline: none;
+  }
+  .menu-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .menu-info {
+    padding: 15px 18px;
+  }
+  .menu-info h4 {
+    color: black; /* letras negras para menú */
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+  }
+  .menu-info p {
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+    color: #4b3b2b;
+  }
+  .menu-info span {
+    font-weight: 700;
+    color: #6a4c33;
+    font-size: 1rem;
+  }
+
+  /* Pedido */
+  #pedido {
+    max-width: 600px;
+    margin: 50px auto 70px auto;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(139, 94, 60, 0.15);
+  }
+  #pedido h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #6a4c33;
+  }
+  form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #4b3b2b;
+  }
+  form input[type="text"],
+  form input[type="tel"],
+  form input[type="number"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 9px 12px;
+    margin-bottom: 18px;
+    border: 1.8px solid #d7ccc8;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  form input[type="text"]:focus,
+  form input[type="tel"]:focus,
+  form input[type="number"]:focus,
+  form select:focus,
+  form textarea:focus {
+    border-color: #6a4c33;
+    outline: none;
+  }
+  form textarea {
+    resize: vertical;
+  }
+  form button {
+    display: block;
+    background-color: #6a4c33;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  form button:hover,
+  form button:focus {
+    background-color: #8b5e3c;
+    outline: none;
+  }
+  #mensaje {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Testimonios */
+  #testimonios {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 10px 60px 10px;
+  }
+  #testimonios h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #6a4c33;
+    margin-bottom: 30px;
+  }
+  .testimonial-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .testimonial-card {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(139, 94, 60, 0.15);
+    font-style: italic;
+    color: #4b3b2b;
+    cursor: default;
+  }
+  .testimonial-text {
+    margin-bottom: 15px;
+  }
+  .testimonial-author {
+    font-weight: 700;
+    text-align: right;
+    color: #6a4c33;
+  }
+
+  /* FAQ */
+  .faq-section {
+    max-width: 700px;
+    margin: 50px auto 80px auto;
+    padding: 0 10px;
+  }
+  .faq-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #6a4c33;
+    margin-bottom: 30px;
+  }
+  .faq-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(139, 94, 60, 0.15);
+    margin-bottom: 15px;
+    padding: 15px 20px;
+  }
+  .faq-item summary {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #6a4c33;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary::after {
+    content: "▼";
+    float: right;
+  }
+  .faq-item[open] summary::after {
+    content: "▲";
+  }
+  .faq-item p {
+    margin-top: 12px;
+    color: #4b3b2b;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #8b5e3c;
+    color: white;
+    text-align: center;
+    padding: 22px 10px;
+    font-size: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .menu-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .testimonial-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 5%;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      text-align: center;
+      width: 100%;
+    }
+    nav {
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    nav a {
+      margin: 0;
+      font-size: 1rem;
+      padding: 6px 10px;
+    }
+    .hero {
+      height: 220px;
+      font-size: 1.3rem;
+      padding: 0 15px;
+    }
+    .vmv-container {
+      flex-direction: column;
+      max-width: 90vw;
+      margin: 40px auto;
+    }
+    .vmv-item {
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+    .menu-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 10px;
+    }
+    .menu-info h4 {
+      font-size: 1.1rem;
+    }
+    .menu-info p,
+    .menu-info span {
+      font-size: 0.95rem;
+    }
+    #pedido {
+      margin: 40px auto 50px auto;
+      padding: 20px 15px;
+    }
+    form#orderForm input,
+    form#orderForm select,
+    form#orderForm textarea {
+      font-size: 1rem;
+    }
+    .testimonial-cards {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .faq-section {
+      margin: 40px 10px 60px 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Coffee_inim2025</h1>
+  <link rel="icon" type="image/png" href="WhatsApp Image 2025-05-22 at 5.47.39 PM.jpeg" />
+  <nav>
+    <a href="#vision">Visión</a>
+    <a href="#mision">Misión</a>
+    <a href="#menu">Menú</a>
+    <a href="#pedido">Pedido</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Imagen principal de cafetería con café y churros españoles">
+  <div>Café y churros auténticos, tradición española en cada bocado</div>
+</section>
+
+<section class="vmv-container" aria-label="Visión, Misión y Valores">
+  <article id="vision" class="vmv-item" tabindex="0">
+    <h3>Visión</h3>
+    <p>Ser la cafetería líder que conecta la cultura española con el amor por el café y churros, ofreciendo momentos únicos a cada cliente.</p>
+  </article>
+  <article id="mision" class="vmv-item" tabindex="0">
+    <h3>Misión</h3>
+    <p>Ofrecer productos de alta calidad que mezclan tradición e innovación, brindando una experiencia cálida, auténtica y memorable.</p>
+  </article>
+  <article id="valores" class="vmv-item" tabindex="0">
+    <h3>Valores</h3>
+    <ul>
+      <li>Calidad: Solo ingredientes frescos y naturales.</li>
+      <li>Autenticidad: Respetamos la tradición española.</li>
+      <li>Cercanía: Atención amable y personalizada.</li>
+      <li>Sostenibilidad: Prácticas responsables con el medio ambiente.</li>
+    </ul>
+  </article>
+</section>
+
+<section id="menu" aria-label="Menú de café y churros">
+  <h2>Menú</h2>
+  <div class="menu-grid">
+    <article class="menu-item" tabindex="0" aria-labelledby="item1-title" aria-describedby="item1-desc item1-price">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Taza de café espresso" />
+      <div class="menu-info">
+        <h4 id="item1-title">Café Espresso</h4>
+        <p id="item1-desc">Intenso y aromático café espresso preparado con granos seleccionados.</p>
+        <span id="item1-price">$3</span>
+      </div>
+    </article>
+    <article class="menu-item" tabindex="0" aria-labelledby="item2-title" aria-describedby="item2-desc item2-price">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Churros dorados con azúcar" />
+      <div class="menu-info">
+        <h4 id="item2-title">Churros Tradicionales</h4>
+        <p id="item2-desc">Crujientes churros españoles espolvoreados con azúcar y canela.</p>
+        <span id="item2-price">$4  </span>
+      </div>
+    </article>
+    <article class="menu-item" tabindex="0" aria-labelledby="item3-title" aria-describedby="item3-desc item3-price">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Café con leche con espuma cremosa" />
+      <div class="menu-info">
+        <h4 id="item3-title">Café con Leche</h4>
+        <p id="item3-desc">Delicioso café con leche espumosa para un sabor suave y cremoso.</p>
+        <span id="item3-price">$1 </span>
+      </div>
+    </article>
+    <article class="menu-item" tabindex="0" aria-labelledby="item4-title" aria-describedby="item4-desc item4-price">
+      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Churros rellenos de chocolate" />
+      <div class="menu-info">
+        <h4 id="item4-title">Churros Rellenos</h4>
+        <p id="item4-desc">Churros rellenos de chocolate o dulce de leche, una delicia para compartir.</p>
+        <span id="item4-price">$1</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="pedido" aria-label="Formulario de pedido">
+  <h2>Haz tu pedido</h2>
+  <form id="orderForm" novalidate>
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo" />
+    
+    <label for="telefono">Teléfono</label>
+    <input type="tel" id="telefono" name="telefono" required placeholder="Tu número de teléfono" />
+    
+    <label for="pedidoSelect">Producto</label>
+    <select id="pedidoSelect" name="pedidoSelect" required>
+      <option value="">-- Selecciona un producto --</option>
+      <option value="Café Espresso">Café Espresso</option>
+      <option value="Churros Tradicionales">Churros Tradicionales</option>
+      <option value="Café con Leche">Café con Leche</option>
+      <option value="Churros Rellenos">Churros Rellenos</option>
+    </select>
+    
+    <label for="cantidad">Cantidad</label>
+    <input type="number" id="cantidad" name="cantidad" min="1" max="20" value="1" required />
+    
+    <label for="comentarios">Comentarios (opcional)</label>
+    <textarea id="comentarios" name="comentarios" rows="3" placeholder="¿Alguna indicación especial?"></textarea>
+    
+    <button type="submit">Enviar pedido</button>
+    <div id="mensaje" role="alert" aria-live="polite"></div>
+  </form>
+</section>
+
+<footer>
+  <p>Teléfono: +503 71318184 
+                              | © 2025 Coffe_inim2025</p>
+</footer>
+
+<script>
+  const form = document.getElementById('orderForm');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      alert('Por favor, completa correctamente todos los campos obligatorios.');
+      return;
+    }
+
+    const nombre = form.nombre.value.trim();
+    const telefono = form.telefono.value.trim();
+    const producto = form.pedidoSelect.value;
+    const cantidad = form.cantidad.value;
+    const comentarios = form.comentarios.value.trim();
+
+    let mensaje = `Hola, quiero hacer un pedido:%0A`;
+    mensaje += `🧑 Nombre: ${nombre}%0A`;
+    mensaje += `📞 Teléfono: ${telefono}%0A`;
+    mensaje += `🛍 Producto: ${producto}%0A`;
+    mensaje += `🔢 Cantidad: ${cantidad}%0A`;
+    if (comentarios) mensaje += `📝 Comentarios: ${comentarios}%0A`;
+
+    const numeroWhatsApp = '50371318184'; // Tu número sin el signo +
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+
+    window.open(url, '_blank');
+
+    form.reset();
+  });
+</script>
+
+
+</body>
+</html>
